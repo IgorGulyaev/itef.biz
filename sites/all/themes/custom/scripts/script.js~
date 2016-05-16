@@ -1,0 +1,165 @@
+jQuery(document).ready(function ($) {
+
+    var wW = $(window).width();
+    var hH = $(window).height();
+    var admH;
+    var STadmH;
+    var body = $('html, body');
+    var pane;
+
+    $('.nav ul.menu a').parent('li').removeClass('active');
+    $('.nav ul.menu a').removeClass('active');
+
+    pane = $('.radix-layouts-content > .panel-panel-inner > .panel-pane:not(.start-panel):not(.pane-contact)');
+    var paneInner = $('.radix-layouts-content > .panel-panel-inner > .panel-pane:not(.start-panel):not(.pane-contact) .block-inner');
+
+    var paneStart = $('.block-system .panel-panel .panel-pane.start-panel');
+    var paneEnd = $('.block-system .panel-panel .panel-pane.pane-contact');
+
+    if (body.hasClass('admin-menu') == true) {
+        admH = 92 + 29;
+        STadmH = 29;
+    } else {
+        admH = 92;
+        STadmH = 0;
+    }
+
+    pane.css('min-height', hH - admH);
+    paneInner.css('min-height', hH - admH);
+    paneStart.height(hH - STadmH);
+    paneEnd.height(hH - STadmH);
+
+    $('a.start').click(function () {
+        var paneService = $('.pane-services');
+        var startScr = paneService.offset().top - admH;
+        body.stop().animate({scrollTop:startScr}, 1000, 'easeInOutQuad');
+        $('#header').addClass('go');
+        $('.nav ul.menu li.first').addClass('active');
+        $('.nav ul.menu li.first a').addClass('active');
+        return false
+    });
+
+    $('.nav ul.menu a').click(function () {
+        var paneTo = $(this).attr('href');
+        var hrefTo = paneTo.substring(1, paneTo.length);
+        var goTo;
+        if (hrefTo == '#contact') {
+            goTo = $(''+hrefTo+'').offset().top - admH + 92;
+        } else {
+            goTo = $(''+hrefTo+'').offset().top - admH;
+        }
+        body.stop().animate({scrollTop:goTo}, 1000, 'easeInOutQuad');
+        return false
+    });
+
+
+    goLinksTop($('#services'));
+    goLinksTop($('#projects'));
+    goLinksTop($('#about'));
+    goLinksTop($('#contact'));
+
+    goLinksDown($('#services'));
+    goLinksDown($('#projects'));
+    goLinksDown($('#about'));
+
+    function goLinksTop(item) {
+        var goTlink = item.prev().prev().attr('id');
+        var goTop = '<a class="gotop" href="/#'+ goTlink +'">top</a>';
+        item.prepend(goTop);
+
+        $('a.gotop').once().on('click', function () {
+            var paneT = $(this).parent().prev().prev();
+            var paneTAttr = paneT.attr('id');
+            var hrefTAct = '/#'+paneTAttr;
+            $('.nav ul.menu a').parent('li').removeClass('active');
+            $('.nav ul.menu a').removeClass('active');
+            $('.nav ul.menu a').each(function () {
+                if ($(this).attr('href') == hrefTAct) {
+                    $(this).parent('li').addClass('active');
+                    $(this).addClass('active');
+                }
+            });
+
+            var goT = paneT.offset().top - admH;
+            body.stop().animate({scrollTop:goT}, 1000, 'easeInOutQuad');
+            return false
+        });
+    }
+    function goLinksDown(item) {
+        var goDlink = item.next().next().attr('id');
+        var goDown = '<a class="godown" href="/#'+ goDlink +'">down</a>';
+        item.append(goDown);
+
+        $('a.godown').on('click', function () {
+            var paneD = $(this).parent().next().next();
+            var paneDAttr = paneD.attr('id');
+            var hrefDAct = '/#'+paneDAttr;
+            $('.nav ul.menu a').parent('li').removeClass('active');
+            $('.nav ul.menu a').removeClass('active');
+            $('.nav ul.menu a').each(function () {
+                if ($(this).attr('href') == hrefDAct) {
+                    $(this).parent('li').addClass('active');
+                    $(this).addClass('active');
+                }
+            });
+
+            var goD;
+            if (paneD.attr('id') == 'contact') {
+                goD = paneD.offset().top - admH + 92;
+            } else {
+                goD = paneD.offset().top - admH;
+            }
+            body.stop().animate({scrollTop:goD}, 1000, 'easeInOutQuad');
+            return false
+        });
+    }
+
+
+
+    $('.block-system .panel-panel .panel-pane.start-panel').parallax("50%", 0.2);
+    $('.block-system .panel-panel .panel-pane.pane-contact').parallax("50%", 0.2);
+    $('.block-system .panel-panel .panel-pane.pane-projects').parallax("50%", 0.1);
+    $('.block-system .panel-panel .panel-pane.pane-projects .block-inner').parallax("0", -0.2);
+    $('.block-system .panel-panel .panel-pane.pane-about').parallax("center", 0.1);
+    $('.block-system .panel-panel .panel-pane.pane-about .block-inner').parallax("center", -0.1);
+    $('.block-system .panel-panel .panel-pane.pane-services .block-inner').parallax("right", 0.2);
+
+
+    $('.view-projects.view-display-id-block').flexslider({
+        selector: ".view-content > .views-row",
+        animation: "slide",
+        slideshow: false,
+        controlNav: false,
+        itemWidth: 345,
+        itemMargin: 20,
+        minItems: 3,
+        maxItems: 3,
+        move: 3
+    });
+
+
+    $(window).scroll(function () {
+        var wScrT = $(window).scrollTop();
+        var scrService = $('.block-system .panel-panel .panel-pane.pane-services').offset().top;
+        var scrContact = $('.block-system .panel-panel .panel-pane.pane-contact').offset().top;
+
+        console.log(scrService);
+
+        if (wScrT == 0 && $('#header').hasClass('go') == true) {
+            $('#header').removeClass('go');
+        }
+        if (wScrT > scrService - 200) {
+            $('#header').addClass('go');
+        }
+        if (wScrT > scrContact - 200) {
+            $('#header').fadeOut('slow');
+        } else {
+            $('#header').fadeIn('slow');
+        }
+    });
+
+    $(window).load(function () {
+        $(".view-projects.view-display-id-block .views-row").reflect();
+    });
+
+});

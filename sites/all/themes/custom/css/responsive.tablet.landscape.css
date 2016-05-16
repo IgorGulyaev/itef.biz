@@ -1,0 +1,56 @@
+/*
+ *   Important Information about this CSS File
+ *
+ * - Do not delete or rename this file, if you do not use it leave it blank (delete
+ *   everything) and the file will be skipped when you enable Production Mode in
+ *   the Global theme settings.
+ *
+ * - Read the _README file in this directory, it contains useful help and other information.
+ */
+
+/* Increase the body font size on tablet devices */
+body {
+  font-size: 93.8%;
+}
+
+
+#header .nav li a,
+#header .nav ul.menu li a {
+  padding: 0;
+  font-size: 16px;
+}
+
+#logo {
+  padding: 14px 0;
+  width: 170px;
+}
+
+.col-md-3 {
+  padding: 40% 0;
+}
+
+.block-system .panel-panel .panel-pane.pane-about .block-content p {
+  font-size: 16px;
+}
+
+.pane-contact .pane-webform form {
+  width: 300px;
+}
+.col-md-3 .pane-webform .block-content form .form-type-radio,
+.pane-contact .pane-webform form .form-type-radio {
+  padding: 0;
+}
+
+
+#footer #logo {
+  width: 140px;
+}
+#footer #logo a {
+  width: 140px;
+}
+#footer .menu li {
+  margin: 0 3%;
+}
+#footer .menu li a {
+  font-size: 14px;
+}

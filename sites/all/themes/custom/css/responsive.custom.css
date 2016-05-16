@@ -1,0 +1,236 @@
+/*
+ * responsive.custom.css is for custom media queries that are not set via the
+ * theme settings, such as cascading media queries.
+ *
+ * By default all the other responsive stylesheets used in Adaptivetheme use a
+ * "stacking method", however cascading media queries use a waterfall method so
+ * you can leverage the cascade and inheritance for all browsers that support
+ * media queries.
+ *
+ * @SEE http://zomigi.com/blog/essential-considerations-for-crafting-quality-media-queries/#mq-overlap-stack
+ *
+ * NOTE: this file loads by default, to disable go to your theme settings and
+ * look under the "CSS" settings tab.
+ */
+
+/*
+ * Really small screens and up
+ */
+/* @media only screen and (min-width: 220px) {} */
+
+/*
+ * Smalltouch sizes and up
+ */
+/* @media only screen and (min-width: 320px) {} */
+
+/*
+ * Smalltouch sizes and down
+ */
+@media only screen and (max-width: 480px) {
+  /* 
+   * Float Region Blocks - custom media query CSS example:
+   * 
+   * Float regions blocks is an Extension you can enable in the appearance
+   * settings for your theme. This feature allows you to automatically float
+   * blocks in regions, you can switch it on and off depending on your
+   * requirements. For design purposes you many want to remove the floats for
+   * devices where the entire theme is just one column - for example small
+   * mobile phones. The following CSS is inside the custom media query:
+   *
+   *   @media only screen and (max-width: 480px){}
+   *
+   * This will target devices with a maximum width of 480px - most small phones.
+   * In these smaller screen sizes we can remove the float and widths so all
+   * blocks stack instead of displaying horizonally. The selector used is an
+   * "attribute selector" which will match on any float block class. Use your
+   * inspector or Firebug to get the classes from the page output if you need
+   * more granular control over block alignment and stacking.
+   */
+  .region[class*="float-blocks"] .block {
+    float: none;
+    width: 100%;
+  }
+}
+
+/*
+ * Tablet sizes and up
+ */
+/* @media only screen and (min-width: 768px) {} */
+
+/*
+ * Desktops/laptops and up
+ */
+/* @media only screen and (min-width: 1025px) {} */
+
+
+@media only screen and (max-width: 1550px) {
+  #branding {
+    max-width: 83%;
+  }
+  #services > .block-inner,
+  #projects > .block-inner,
+  #about > .block-inner,
+  #contact > .block-inner,
+  #footer > .block-inner {
+    max-width: 80%;
+  }
+}
+
+html.mobile .col-md-3 {
+  left: -50px;
+}
+html.mobile #services > .block-inner,
+html.mobile #projects > .block-inner,
+html.mobile #about > .block-inner,
+html.mobile #contact > .block-inner,
+html.mobile #footer > .block-inner {
+  max-width: 100%;
+  padding: 30px;
+}
+html.mobile #footer {
+  position: relative;
+  background-color: #000;
+}
+html.mobile #footer .block-inner > div {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+html.mobile #footer #logo {
+  padding-bottom: 5px;
+  width: 100%;
+}
+html.mobile #footer #logo a {
+  display: inline-block;
+  width: 130px;
+}
+html.mobile #footer .menu li {
+  display: block;
+  padding-bottom: 10px;
+}
+html.mobile .copyright {
+  padding-top: 10px;
+}
+html.mobile .panel-panel.panel-col-first,
+html.mobile .panel-panel.panel-col-last {
+  float: none;
+  width: 100%;
+}
+html.mobile #contact .block-inner > .block-content {
+  padding: 0;
+}
+html.mobile .block-system .panel-panel .panel-pane.pane-about .block-content p {
+  font-size: 14px;
+}
+html.mobile .view-projects.view-display-id-block .view-content .views-row {
+  margin: 0;
+}
+html.mobile .block-system .panel-panel .panel-pane.pane-contact .block-inner .panel-col-first {
+  font-size: 16px;
+}
+html.mobile .panel-2col .panel-col-first .inside,
+html.mobile .panel-2col .panel-col-last .inside {
+  margin: 0;
+}
+html.mobile #contact .block-inner {
+  padding-bottom: 0;
+}
+html.mobile .pane-contact .pane-webform form {
+  float: none;
+  width: 100%;
+}
+html.mobile .col-md-3 .pane-webform .block-content form,
+html.mobile .pane-contact .pane-webform form {
+  padding: 10px 18px;
+}
+html.mobile .view-projects.view-display-id-block {
+  margin-top: 0;
+}
+html.mobile .view-services.view-display-id-block .views-field {
+  margin-left: 0;
+}
+html.mobile .block-system .panel-panel .panel-pane.pane-services .block-inner {
+  -webkit-background-size: 50%;
+  background-size: 50%;
+}
+html.mobile .view-services.view-display-id-block .view-content {
+  font-size: 14px;
+}
+html.mobile .view-services .quicktabs-wrapper ul.quicktabs-tabs li a {
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+}
+html.mobile .view-services .quicktabs-wrapper ul.quicktabs-tabs li.active a,
+html.mobile .view-services .quicktabs-wrapper ul.quicktabs-tabs li a:hover {
+  background: #f2f2f2;
+}
+html.mobile .view-services .quicktabs-wrapper ul.quicktabs-tabs li a:hover:after,
+html.mobile .view-services .quicktabs-wrapper ul.quicktabs-tabs li.active a:after {
+  display: none;
+}
+html.mobile .view-services .quicktabs-wrapper ul.quicktabs-tabs {
+  border: none;
+}
+html.mobile .view-services .quicktabs-wrapper ul.quicktabs-tabs li {
+  display: block;
+  margin: 0;
+  width: 100%;
+}
+html.mobile #page {
+  margin-top: 50px;
+}
+html.mobile #header {
+  height: 50px;
+  background: #a4a5a6;
+}
+html.mobile #branding {
+  float: left;
+  margin: 0 0 0 10px;
+  max-width: 100px;
+}
+html.mobile #header .nav ul.menu {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  display: none;
+  width: 100%;
+  background: #a4a5a6;
+}
+html.mobile #header .nav ul.menu li {
+  display: block;
+  float: none;
+  margin: 0;
+  padding: 8px;
+}
+html.mobile #header .nav ul.menu li a {
+  font-size: 16px;
+}
+html.mobile .primary-menu-wrapper .element-invisible {
+  top: 10px;
+  right: 25px;
+  margin: 0;
+  height: 30px;
+  width: 30px;
+  clip: auto !important;
+  text-indent: -9999px;
+}
+html.mobile .primary-menu-wrapper .element-invisible:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  content: '≡';
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  text-indent: 0;
+  font-weight: 500;
+  font-size: 43px;
+  line-height: 30px;
+}
+html.mobile .radix-layouts-content > .panel-panel-inner > .panel-pane.pane-custom > .block-inner {
+  min-height: 320px;
+}
+html.mobile {}
